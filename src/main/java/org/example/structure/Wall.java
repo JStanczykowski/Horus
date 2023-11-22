@@ -13,16 +13,26 @@ public class Wall implements Structure{
     }
     @Override
     public Optional<Block> findBlockByColor(String color) {
-        return blocks.stream()
+        Optional<Block> foundBlock = blocks.stream()
                 .filter(block -> block.getColor().equalsIgnoreCase(color))
                 .findFirst();
+
+        if(foundBlock.isEmpty()) {
+            System.out.println("Not found, block color :" + color);
+        }
+        return foundBlock;
     }
 
     @Override
     public List<Block> findBlocksByMaterial(String material) {
-        return blocks.stream()
+        List<Block> foundBlocks = blocks.stream()
                 .filter(block -> block.getMaterial().equalsIgnoreCase(material))
                 .collect(Collectors.toList());
+
+        if(foundBlocks.isEmpty()) {
+            System.out.println("Not found, block material :" + material);
+        }
+        return foundBlocks;
     }
 
     @Override
